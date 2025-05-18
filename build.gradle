@@ -1,0 +1,91 @@
+plugins {
+  id 'application'
+  alias(libs.plugins.lombok)
+}
+
+group = 'org.fp024.programmers.codingtest'
+version = '0.0.1-SNAPSHOT'
+
+java {
+  toolchain {
+    languageVersion = JavaLanguageVersion.of("${javaVersion}")
+  }
+}
+
+tasks.withType(JavaCompile).configureEach {
+  options.compilerArgs.add("-parameters")
+  options.encoding = "${projectEncoding}"
+}
+
+repositories {
+  mavenCentral()
+}
+
+dependencies {
+  implementation (libs.log4j.core)
+  implementation (libs.log4j.slf4j2.impl)
+
+  testImplementation (libs.junit.jupiter)
+  testRuntimeOnly "org.junit.platform:junit-platform-launcher"
+
+  testImplementation (libs.mockito.core)
+  testImplementation (libs.assertj.core)
+  testImplementation (libs.spring.test)
+}
+
+// Explicitly setting up instrumentation for inline mocking (Java 21+) 설정
+// * https://javadoc.io/doc/org.mockito/mockito-core/latest/org/mockito/Mockito.html#0.3
+configurations {
+  mockitoAgent
+}
+
+dependencies {
+  // mockitoAgent('org.mockito:mockito-core') {
+  mockitoAgent(libs.mockito.core) {
+    transitive = false
+  }
+}
+
+// ----------------------------------------------------------------------------
+// vscode-java-test가 build.gradle의 test 설정을 인식하지 못하기 때문에,
+// -javaagent 설정이 필요할 경우 라이브러리를 수동으로 복사하는 테스크를 만들었다.
+// gradle cleanJavaAgentLibs를 실행해둔 후에, VSCode 상에서 테스트를 수행하자!
+tasks.register('copyMockitoJar', Copy) {
+  from configurations.mockitoAgent into "${project.rootDir}/javaagent-libs"
+}
+
+// javaagent-libs 디렉토리를 비움
+tasks.register('cleanJavaAgentLibs', Delete) {
+  delete fileTree(dir: "${project.rootDir}/javaagent-libs", include: '**/*.jar')
+}
+
+tasks.named('copyMockitoJar').configure {
+  dependsOn cleanJavaAgentLibs
+}
+
+// 의존성 해결 후 Jar 파일을 복사
+afterEvaluate {
+  tasks.named('classes').configure {
+    dependsOn copyMockitoJar
+  }
+}
+// ----------------------------------------------------------------------------
+
+tasks.named('test') {
+  jvmArgs "-javaagent:${configurations.mockitoAgent.asPath}", "-Xshare:off"
+  useJUnitPlatform()
+  testLogging {
+    outputs.upToDateWhen { false }
+    showStandardStreams = true
+  }
+  systemProperty "file.encoding", "${projectEncoding}"
+}
+
+application {
+  mainClass = 'org.fp024.MainRunner'
+}
+
+run {
+  systemProperty "file.encoding", "${projectEncoding}"
+  standardInput = System.in
+}
