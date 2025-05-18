@@ -37,6 +37,8 @@ class Exam42889Tests {
             return o2.getValue().compareTo(o1.getValue());
           });
 
+      System.out.println(entryList);
+
       return entryList.stream().mapToInt(Map.Entry::getKey).toArray();
     }
 
@@ -53,12 +55,15 @@ class Exam42889Tests {
           challenger++;
         }
       }
+      if (challenger == 0) {
+        return 0.0;
+      }
       return failCount / (double) challenger;
     }
   }
 
   @ParameterizedTest
-  @MethodSource("defaultDataProvider")
+  @MethodSource({"defaultDataProvider", "extraDataProvider"})
   void testSolution(int N, int[] stages, int[] expect) {
     assertThat(new Solution().solution(N, stages)).isEqualTo(expect);
   }
@@ -81,14 +86,28 @@ class Exam42889Tests {
         //
         );
   }
+
+  static Stream<Arguments> extraDataProvider() {
+    return Stream.of(
+        // 총 스테이지가 2인데, 스테이지 2에 도달 못 한 경우
+        Arguments.of(
+            2, //
+            new int[] {1, 1},
+            new int[] {1, 2}
+            //
+            )
+        //
+        );
+  }
   // cspell:enable
   //
   // === 문제 읽고 첫 느낌 ===
   //   문제에 나온 실패율 공식에 따라 풀었는데...
   //   JS/TS라면 map을 값을 보고 아주 쉬웠을 텐데, Java에서는 다른 방법이 있을지는 모르겠으나..
   //   Map을 List로 바꾼 다음에 Comparator 지정해서 결과를 얻었다.
+  //   +2점 얻음.
   //
   // === 다른 사람 풀이 확인 이후 의견 ===
-  // ...
+  //   스테이지 자체를 클레스로 하시는 분들이 꽤 보인다. 👍
   //
 }
