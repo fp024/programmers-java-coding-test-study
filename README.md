@@ -14,6 +14,7 @@
 
 * Spring + JUnit + Gradle 프로젝트이고 Boot 프로젝트는 아니다.
 *  VSCode에서 Test 환경에서 Mockito agent 추가를 하거나 -parameters 컴파일러 옵션 추가를 위해 Node 스크립트를 추가한 부분이 있다.
+*  💡 Java 버전은 프로그래머스의 Java컴파일러가 14 버전이긴한데, 21 버전으로 사용하고 제출할 때 컴파일 오류가 발생하는 코드가 있다면 14버전에 호환되게 바꿔서 쓰도록 하자!
 
 
 
@@ -39,7 +40,7 @@
     pnpm init-project
     ```
 
-    * 다음 3가지를 모두 실행시키다. 
+    * 다음 3가지 테스크를 모두 실행시킨다.
 
       * **add-javac-parameters-option**
 
