@@ -5,10 +5,8 @@ import static org.assertj.core.api.Assertions.assertThat;
 import java.util.Arrays;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import java.util.stream.Stream;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
 /*
@@ -85,65 +83,13 @@ class Exam17682Tests {
 
   @ParameterizedTest
   @MethodSource({
-    "defaultDataProvider", //
-    "extraDataProvider"
+    "org.fp024.lv01.Exam17682TestData#defaultDataProvider", //
+    "org.fp024.lv01.Exam17682TestData#extraDataProvider"
   })
   void testSolution(String dartResult, int expect) {
     assertThat(new Solution().solution(dartResult)).isEqualTo(expect);
   }
 
-  // cspell:disable
-  static Stream<Arguments> defaultDataProvider() {
-    return Stream.of(
-        Arguments.of(
-            "1S2D*3T", //
-            37
-            //
-            ),
-        Arguments.of(
-            "1D2S#10S", //
-            9
-            //
-            ),
-        Arguments.of(
-            "1D2S0T", //
-            3
-            //
-            ),
-        Arguments.of(
-            "1S*2T*3S", //
-            23
-            //
-            ),
-        Arguments.of(
-            "1D#2S*3S", //
-            5
-            //
-            ),
-        Arguments.of(
-            "1T2D3D#", //
-            -4
-            //
-            ),
-        Arguments.of(
-            "1D2S3T*", //
-            59
-            //
-            )
-        //
-        );
-  }
-
-  static Stream<Arguments> extraDataProvider() {
-    return Stream.of(
-        Arguments.of(
-            "1S#2D#3T*", //
-            45
-            //
-            )
-        //
-        );
-  }
   // cspell:enable
   //
   // === 문제 읽고 첫 느낌 ===
