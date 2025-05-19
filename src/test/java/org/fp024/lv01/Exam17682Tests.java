@@ -34,8 +34,6 @@ class Exam17682Tests {
       Pattern pattern = Pattern.compile("(\\d+)([SDT])([*#]?)");
       Matcher matcher = pattern.matcher(dartResult);
 
-      int minusShapPosition = -1;
-
       // 라운드 분리
       for (int i = 0; i < roundLog.length && matcher.find(); i++) {
         roundLog[i] = matcher.group();
@@ -44,13 +42,10 @@ class Exam17682Tests {
             mulStar[j] = mulStar[j] * 2;
           }
         }
-        if (roundLog[i].contains("#")) {
-          minusShapPosition = i;
-        }
       }
 
       System.out.println(Arrays.toString(roundLog));
-      System.out.printf("%d, %s%n", minusShapPosition, Arrays.toString(mulStar));
+      System.out.printf("%s%n", Arrays.toString(mulStar));
 
       // 영역 계산
       for (int i = roundLog.length - 1; i >= 0; i--) {
@@ -68,16 +63,18 @@ class Exam17682Tests {
 
           score = score * mulStar[i];
 
-          if (minusShapPosition == i) {
+          String option = m.group(3);
+          if ("#".equals(option)) {
             score = score * -1;
           }
+
           scores[i] = score;
         }
       }
 
       System.out.println(Arrays.toString(scores));
-      // 옵션 계산
 
+      // 총점 계산
       for (int score : scores) {
         answer += score;
       }
@@ -87,7 +84,10 @@ class Exam17682Tests {
   }
 
   @ParameterizedTest
-  @MethodSource("defaultDataProvider")
+  @MethodSource({
+    "defaultDataProvider", //
+    "extraDataProvider"
+  })
   void testSolution(String dartResult, int expect) {
     assertThat(new Solution().solution(dartResult)).isEqualTo(expect);
   }
@@ -134,12 +134,24 @@ class Exam17682Tests {
         );
   }
 
+  static Stream<Arguments> extraDataProvider() {
+    return Stream.of(
+        Arguments.of(
+            "1S#2D#3T*", //
+            45
+            //
+            )
+        //
+        );
+  }
   // cspell:enable
   //
   // === 문제 읽고 첫 느낌 ===
   //   진짜 어렵다.. 정규식을 써도... 옵션에서 * 적용하는게 좀 어려운 것 같음.
   //
   // === 다른 사람 풀이 확인 이후 의견 ===
-  // ...
+  //   일단 나는 어거지로 풀긴 했는데...😅
+  //   다른 사람들 풀이보니...
+  //   왠지 입력 문자열을 한글자씩 파싱해서 순서대로 처리해보는게 더 정석적이고, 나았을 것 같긴하다.
   //
 }
