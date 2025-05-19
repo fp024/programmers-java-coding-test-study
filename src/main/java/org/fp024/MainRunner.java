@@ -32,15 +32,15 @@ public class MainRunner {
         Object result = runner.run(newArgs);
         if (result != null && result.getClass().isArray()) {
           switch (result) {
-            case int[] i -> System.out.print(Arrays.toString(i));
-            case long[] l -> System.out.print(Arrays.toString(l));
-            case double[] d -> System.out.print(Arrays.toString(d));
-            case boolean[] b -> System.out.print(Arrays.toString(b));
-            case char[] c -> System.out.print(Arrays.toString(c));
-            default -> System.out.print(Arrays.toString((Object[]) result));
+            case int[] i -> System.out.println(Arrays.toString(i));
+            case long[] l -> System.out.println(Arrays.toString(l));
+            case double[] d -> System.out.println(Arrays.toString(d));
+            case boolean[] b -> System.out.println(Arrays.toString(b));
+            case char[] c -> System.out.println(Arrays.toString(c));
+            default -> System.out.println(Arrays.toString((Object[]) result));
           }
         } else {
-          System.out.print(result);
+          System.out.println(result);
         }
       } else {
         System.out.printf("[오류] %s 문제 클래스는 Runner를 구현하지 않았습니다.", object.getClass().getName());
