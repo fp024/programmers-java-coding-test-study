@@ -16,6 +16,6 @@ class MainRunnerTests extends KeyboardInputTestHelper {
         0
         0
         """);
-    MainRunner.main(new String[] {"lv00.Exam001"});
+    MainRunner.main(new String[] {"lv00.Exam001Sample"});
   }
 }
