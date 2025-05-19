@@ -10,8 +10,9 @@ public class MainRunner {
   public static void main(String[] args) {
     if (args.length == 0) {
       System.out.println("[실행방법] gradle clean run --args 레벨_패키지.클래스_이름");
-      System.out.println("[예제 01] gradle clean run --args lv00.Exam014");
-      System.out.println("[예제 02] gradle clean run --args \"lv00.Exam014 args1 args2 args3\"");
+      System.out.println("[예제 01] gradle clean run --args lv00.Exam001Sample");
+      System.out.println("  Exam001Sample 예제는 Scanner 입력을 받으므로...");
+      System.out.println("  숫자 들을 엔터로 구분해서 입력 후, 입력이 끝나면 Ctrl+Z 입력으로 끝냄");
       return;
     }
 
