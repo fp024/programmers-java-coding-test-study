@@ -1,37 +1,50 @@
-import { access, mkdir, readFile, appendFile } from 'fs/promises';
+import { access, mkdir, readFile, writeFile } from 'fs/promises';
 import path from 'path';
 
-// .settings 디렉토리가 존재하지 않으면 생성
-const settingsDir = path.join(process.cwd(), '.settings');
-try {
-  await access(settingsDir);
-} catch (error) {
-  await mkdir(settingsDir);
+const SETTINGS = {
+  DIR: '.settings',
+  FILE: 'org.eclipse.jdt.core.prefs',
+  OPTION: {
+    KEY: 'org.eclipse.jdt.core.compiler.codegen.methodParameters',
+    VALUE: 'generate',
+  },
+};
+
+async function ensureDirectory(dir) {
+  try {
+    await access(dir);
+  } catch {
+    await mkdir(dir, { recursive: true });
+  }
 }
 
-// org.eclipse.jdt.core.prefs 파일 경로
-const prefsFilePath = path.join(settingsDir, 'org.eclipse.jdt.core.prefs');
+async function addCompilerOption() {
+  const settingsDir = path.join(process.cwd(), SETTINGS.DIR);
+  const prefsFilePath = path.join(settingsDir, SETTINGS.FILE);
+  const prefsContent = `${SETTINGS.OPTION.KEY}=${SETTINGS.OPTION.VALUE}\n`;
 
-// 파일 내용
-const prefsContent =
-  'org.eclipse.jdt.core.compiler.codegen.methodParameters=generate';
+  await ensureDirectory(settingsDir);
 
-// 파일이 존재하는지 확인하고, 내용에 설정이 있는지 확인
-let fileContent = '';
-try {
-  fileContent = await readFile(prefsFilePath, 'utf8');
-} catch (error) {
-  // 파일이 존재하지 않으면 빈 문자열 유지
+  try {
+    const fileContent = await readFile(prefsFilePath, 'utf8');
+    if (!fileContent.includes(prefsContent.trim())) {
+      await writeFile(prefsFilePath, fileContent + prefsContent);
+      console.log(
+        'The -parameters compiler option has been added for VSCode Java environment.'
+      );
+    } else {
+      console.log(
+        'The -parameters compiler option already exists for VSCode Java environment.'
+      );
+    }
+  } catch {
+    // 파일이 없는 경우 새로 생성
+    await writeFile(prefsFilePath, prefsContent);
+    console.log('Created new prefs file with -parameters compiler option.');
+  }
 }
 
-// 설정이 이미 존재하지 않는 경우에만 추가
-if (!fileContent.includes(prefsContent)) {
-  await appendFile(prefsFilePath, `${prefsContent}\n`, 'utf8');
-  console.log(
-    'The -parameters compiler option has been added for VSCode Java environment.'
-  );
-} else {
-  console.log(
-    'The -parameters compiler option already exists for VSCode Java environment.'
-  );
-}
+addCompilerOption().catch((error) => {
+  console.error('Error:', error.message);
+  process.exit(1);
+});
