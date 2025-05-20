@@ -28,4 +28,22 @@ class Exam77484TestData {
         //
         );
   }
+
+  static Stream<Arguments> extraDataProvider() {
+    return Stream.of(
+        Arguments.of(
+            new int[] {1, 2, 3, 4, 5, 0}, //
+            new int[] {7, 8, 9, 10, 11, 12},
+            new int[] {6, 6}
+            //
+            ),
+        Arguments.of(
+            new int[] {1, 2, 3, 4, 5, 6}, //
+            new int[] {7, 8, 9, 10, 11, 12},
+            new int[] {6, 6}
+            //
+            )
+        //
+        );
+  }
 }

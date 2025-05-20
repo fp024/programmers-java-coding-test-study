@@ -34,24 +34,21 @@ class Exam77484Tests {
       int matchedCount = 0;
 
       for (int lotto : lottos) {
+        if (lotto == 0) {
+          zeroCount++;
+          continue;
+        }
+
         for (int winNum : win_nums) {
           if (lotto == winNum) {
             matchedCount++;
           }
         }
-
-        if (lotto == 0) {
-          zeroCount++;
-        }
       }
 
       var answer = new int[2];
-      answer[0] = ALL_NUMBER_COUNT - matchedCount - zeroCount + 1;
-      if (zeroCount == ALL_NUMBER_COUNT) {
-        answer[1] = ALL_NUMBER_COUNT - matchedCount;
-      } else {
-        answer[1] = ALL_NUMBER_COUNT - matchedCount + 1;
-      }
+      answer[0] = Math.min(ALL_NUMBER_COUNT - matchedCount - zeroCount + 1, ALL_NUMBER_COUNT);
+      answer[1] = Math.min(ALL_NUMBER_COUNT - matchedCount + 1, ALL_NUMBER_COUNT);
 
       return answer;
     }
@@ -60,7 +57,7 @@ class Exam77484Tests {
   @ParameterizedTest
   @MethodSource({
     "org.fp024.lv01.Exam77484TestData#defaultDataProvider", //
-    // "org.fp024.lv01.Exam77484TestData#extraDataProvider"
+    "org.fp024.lv01.Exam77484TestData#extraDataProvider"
   })
   void testSolution(int[] lottos, int[] win_nums, int[] expect) {
     assertThat(new Solution().solution(lottos, win_nums)).isEqualTo(expect);
@@ -69,9 +66,11 @@ class Exam77484Tests {
   // cspell:enable
   //
   // === 문제 읽고 첫 느낌 ===
-  // ...
+  //   좀 복잡하게 생각해서 Set이나 List이런 걸 쓰면 편할까? 했는데,
+  //   그냥 기본 기능으로만 쓰니까 더 잘 풀렸다. 👍
   //
   // === 다른 사람 풀이 확인 이후 의견 ===
-  // ...
+  //   첫번째 Map<로또번호,일치여부>를 구성하신 분도 좋아보인다. 👍
+  //   그런데 두번째... 등수를 스위치로 정의한 분이 읽기가 좋아보인다. 👍👍
   //
 }
