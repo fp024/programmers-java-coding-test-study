@@ -16,5 +16,40 @@ class Exam155652TestData {
             ));
   }
 
+  static Stream<Arguments> extraDataProvider() {
+    return Stream.of(
+        Arguments.of(
+            "z", //
+            "a", //
+            1, //
+            "b"
+            //
+            ),
+        Arguments.of(
+            "a", //
+            "bcdefghijk", //
+            20, //
+            "o"
+            //
+            ),
+        Arguments.of(
+            "z", //
+            "abcdefghij", //
+            20, //
+            "n"
+            //
+            ),
+        Arguments.of(
+            "z", //
+            "abcdefghij", //
+            20, //
+            "n"
+            //
+            )
+        //
+
+        );
+  }
+
   // cspell:enable
 }

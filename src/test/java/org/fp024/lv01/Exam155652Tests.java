@@ -29,10 +29,10 @@ class Exam155652Tests {
         int c = s.charAt(i);
 
         int newIndex;
-        if ((skippedAlphabet.indexOf(c) + index) > skippedAlphabet.length()) {
-          newIndex = skippedAlphabet.indexOf(c) + index;
-        } else {
+        if ((skippedAlphabet.indexOf(c) + index) >= skippedAlphabet.length()) {
           newIndex = (skippedAlphabet.indexOf(c) + index) % skippedAlphabet.length();
+        } else {
+          newIndex = skippedAlphabet.indexOf(c) + index;
         }
 
         answer.append(skippedAlphabet.charAt(newIndex));
@@ -43,8 +43,8 @@ class Exam155652Tests {
 
     @ParameterizedTest
     @MethodSource({
-      "org.fp024.lv01.Exam155652TestData#defaultDataProvider", //
-      // "org.fp024.lv01.Exam155652TestData#extraDataProvider"
+      // "org.fp024.lv01.Exam155652TestData#defaultDataProvider", //
+      "org.fp024.lv01.Exam155652TestData#extraDataProvider"
     })
     void testSolution(String s, String skip, int index, String expect) {
       assertThat(new Solution().solution(s, skip, index)).isEqualTo(expect);
@@ -59,7 +59,7 @@ class Exam155652Tests {
     //    3. 새로운 인덱스 값을 1에서 만든 문자열 기준에서 찾아서 응답 문자열에 누적
     //
     // === 다른 사람 풀이 확인 이후 의견 ===
-    // ...
+    //    다들 잘 푸신 것 같다, 이번에는 +2점 받음.
     //
     //
   }
