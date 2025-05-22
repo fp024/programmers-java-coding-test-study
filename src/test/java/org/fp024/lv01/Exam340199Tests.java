@@ -14,6 +14,7 @@ import org.junit.jupiter.params.provider.MethodSource;
  */
 @Slf4j
 class Exam340199Tests {
+  // ========== Target ==========
   static class Solution {
     /**
      * @param wallet 지갑 가로,세로 길이
@@ -44,6 +45,7 @@ class Exam340199Tests {
     }
   }
 
+  // ========== Test ==========
   @ParameterizedTest
   @MethodSource("defaultDataProvider")
   void testSolution(int[] wallet, int[] bill, int expect) {

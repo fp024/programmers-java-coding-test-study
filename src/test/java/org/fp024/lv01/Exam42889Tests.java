@@ -18,6 +18,7 @@ import org.junit.jupiter.params.provider.MethodSource;
  */
 @Slf4j
 class Exam42889Tests {
+  // ========== Target ==========
   static class Solution {
     public int[] solution(int N, int[] stages) {
 
@@ -62,6 +63,7 @@ class Exam42889Tests {
     }
   }
 
+  // ========== Test ==========
   @ParameterizedTest
   @MethodSource({"defaultDataProvider", "extraDataProvider"})
   void testSolution(int N, int[] stages, int[] expect) {

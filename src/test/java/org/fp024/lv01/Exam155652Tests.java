@@ -12,6 +12,7 @@ import org.junit.jupiter.params.provider.MethodSource;
  */
 @Slf4j
 class Exam155652Tests {
+  // ========== Target ==========
   static class Solution {
 
     /**
@@ -42,6 +43,7 @@ class Exam155652Tests {
     }
   }
 
+  // ========== Test ==========
   @ParameterizedTest
   @MethodSource({
     "org.fp024.lv01.Exam155652TestData#defaultDataProvider", //

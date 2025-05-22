@@ -20,6 +20,7 @@ import org.junit.jupiter.params.provider.MethodSource;
  */
 @Slf4j
 class Exam77484Tests {
+  // ========== Target ==========
   static class Solution {
     static final int ALL_NUMBER_COUNT = 6;
 
@@ -54,6 +55,7 @@ class Exam77484Tests {
     }
   }
 
+  // ========== Test ==========
   @ParameterizedTest
   @MethodSource({
     "org.fp024.lv01.Exam77484TestData#defaultDataProvider", //

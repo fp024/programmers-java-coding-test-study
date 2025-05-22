@@ -15,6 +15,7 @@ import org.junit.jupiter.params.provider.MethodSource;
  */
 @Slf4j
 class Exam17682ATests {
+  // ========== Target ==========
   static class Solution {
     /**
      * @param dartResult "점수|보너스|[옵션]" 으로 구성된 문자열
@@ -56,6 +57,7 @@ class Exam17682ATests {
     }
   }
 
+  // ========== Test ==========
   @ParameterizedTest
   @MethodSource({
     "org.fp024.lv01.Exam17682TestData#defaultDataProvider", //
