@@ -46,7 +46,7 @@ class Exam160586Tests {
 
           boolean isAllNotFound = true;
 
-          // 검색이 한번도 안된 경우 확인
+          // 모든 자판에서 검색이 한번도 안된 경우 확인
           for (int k : count) {
             if (k != MAX_KEY_ELEMENT_SIZE + 1) {
               isAllNotFound = false;
@@ -56,6 +56,7 @@ class Exam160586Tests {
 
           if (isAllNotFound) {
             answer[i] = -1;
+            break; // 💡특정 글자의 키입력을 모든 키맵에서 해결할 수 없는 상황에서는, 지금 것은 더이상 보지 않고 다른 타켓으로 넘어야함
           } else {
             answer[i] += count[0];
           }
@@ -70,7 +71,7 @@ class Exam160586Tests {
   @ParameterizedTest
   @MethodSource({
     "org.fp024.lv01.Exam160586TestData#defaultDataProvider", //
-    // "org.fp024.lv01.Exam160586TestData#extraDataProvider"
+    "org.fp024.lv01.Exam160586TestData#extraDataProvider"
   })
   void testSolution(String[] keymap, String[] targets, int[] expect) {
     assertThat(new Solution().solution(keymap, targets)).isEqualTo(expect);
@@ -79,9 +80,11 @@ class Exam160586Tests {
   // === 문제 읽고 첫 느낌 ===
   //   lv01 부터는 다 어려움 😓
   //   초💥~~ 어거지로 기본 테스트를 풀었다. 😓
+  //   모든 자판(keymap)에서 해결할 수 없는 글자를 만났을 때는 실패로 처리하고 넘겨야하는데,
+  //   그러지 않아서 실패를 했었다. 😅
+  //   +2 점나왔다.
   //
   // === 다른 사람 풀이 확인 이후 의견 ===
-  // ...
-  //
+  //   반복이 복잡해지는 건 다른 분들도 비슷하다. 😅
   //
 }

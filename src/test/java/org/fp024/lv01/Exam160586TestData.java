@@ -31,5 +31,25 @@ class Exam160586TestData {
         );
   }
 
+  static Stream<Arguments> extraDataProvider() {
+    return Stream.of(
+        Arguments.of(
+            new String[] {
+              "AA",
+            }, //
+            new String[] {"B", "A"}, //
+            new int[] {-1, 1}
+            //
+            ),
+        Arguments.of(
+            new String[] {"ABACD", "BCEFD"}, //
+            new String[] {"XABCD", "AABB"}, //
+            new int[] {-1, 4}
+            //
+            )
+        //
+        );
+  }
+
   // cspell:enable
 }
