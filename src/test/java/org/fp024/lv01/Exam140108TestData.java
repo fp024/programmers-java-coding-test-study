@@ -25,4 +25,15 @@ class Exam140108TestData {
         //
         );
   }
+
+  static Stream<Arguments> extraDataProvider() {
+    return Stream.of(
+        Arguments.of(
+            "aaba", //
+            1
+            //
+            )
+        //
+        );
+  }
 }
