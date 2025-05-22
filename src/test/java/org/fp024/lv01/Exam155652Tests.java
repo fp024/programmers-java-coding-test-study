@@ -40,27 +40,27 @@ class Exam155652Tests {
 
       return answer.toString();
     }
-
-    @ParameterizedTest
-    @MethodSource({
-      // "org.fp024.lv01.Exam155652TestData#defaultDataProvider", //
-      "org.fp024.lv01.Exam155652TestData#extraDataProvider"
-    })
-    void testSolution(String s, String skip, int index, String expect) {
-      assertThat(new Solution().solution(s, skip, index)).isEqualTo(expect);
-    }
-    //
-    // === 문제 읽고 첫 느낌 ===
-    //   일단...
-    //    1. skip 문자를 정리한 알파벳 문자열을 만듬.
-    //    2. 1.에서 만든 문자열을 기준 문자열로 참고해서 새로운 인덱스를 구한다.
-    //       오버플로우를 고려해서 나머지 연산 처리를 한다.
-    //       그런데.. 무조건 나머지 연산을 하면 성능을 조금이라도 더 잡아먹을 수 있으니, if 검사후에 조건이 맞으면 나머지연산을 함.
-    //    3. 새로운 인덱스 값을 1에서 만든 문자열 기준에서 찾아서 응답 문자열에 누적
-    //
-    // === 다른 사람 풀이 확인 이후 의견 ===
-    //    다들 잘 푸신 것 같다, 이번에는 +2점 받음.
-    //
-    //
   }
+
+  @ParameterizedTest
+  @MethodSource({
+    "org.fp024.lv01.Exam155652TestData#defaultDataProvider", //
+    "org.fp024.lv01.Exam155652TestData#extraDataProvider"
+  })
+  void testSolution(String s, String skip, int index, String expect) {
+    assertThat(new Solution().solution(s, skip, index)).isEqualTo(expect);
+  }
+  //
+  // === 문제 읽고 첫 느낌 ===
+  //   일단...
+  //    1. skip 문자를 정리한 알파벳 문자열을 만듬.
+  //    2. 1.에서 만든 문자열을 기준 문자열로 참고해서 새로운 인덱스를 구한다.
+  //       오버플로우를 고려해서 나머지 연산 처리를 한다.
+  //       그런데.. 무조건 나머지 연산을 하면 성능을 조금이라도 더 잡아먹을 수 있으니, if 검사후에 조건이 맞으면 나머지연산을 함.
+  //    3. 새로운 인덱스 값을 1에서 만든 문자열 기준에서 찾아서 응답 문자열에 누적
+  //
+  // === 다른 사람 풀이 확인 이후 의견 ===
+  //    다들 잘 푸신 것 같다, 이번에는 +2점 받음.
+  //
+  //
 }
