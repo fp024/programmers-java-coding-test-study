@@ -33,26 +33,18 @@ class Exam160586Tests {
 
           Arrays.fill(count, MAX_KEY_ELEMENT_SIZE + 1);
 
+          boolean isAllNotFound = true; // 모든 자판에서 검색이 한번도 안된 경우 확인
           for (int k = 0; k < keymap.length; k++) {
             int f = keymap[k].indexOf(c);
 
             if (f != -1) {
               count[k] = Math.min(count[k], f + 1);
+              isAllNotFound = false;
             }
           }
 
           // 타겟 별로 눌렀는지 체크용도의 배열에서 최소값을 구하기 위해 정렬을 해줌
           Arrays.sort(count);
-
-          boolean isAllNotFound = true;
-
-          // 모든 자판에서 검색이 한번도 안된 경우 확인
-          for (int k : count) {
-            if (k != MAX_KEY_ELEMENT_SIZE + 1) {
-              isAllNotFound = false;
-              break;
-            }
-          }
 
           if (isAllNotFound) {
             answer[i] = -1;
