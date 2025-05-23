@@ -77,6 +77,7 @@ class Exam140108Tests {
   void testSolution(String s, int expect) {
     assertThat(new Solution().solution(s)).isEqualTo(expect);
   }
+  // cspell:disable
   //
   // === 문제 읽고 첫 느낌 ===
   //   이것도 어렵다...😂😂😂
