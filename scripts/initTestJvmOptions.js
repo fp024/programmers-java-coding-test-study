@@ -1,13 +1,12 @@
 import { readdir, readFile, writeFile } from 'fs/promises';
 import path from 'path';
-import { fileURLToPath } from 'url';
 import { parse, stringify } from 'comment-json';
 
 // 상수 정의
 const CONFIG = {
   PATHS: {
-    JAVAAGENT_DIR: '../javaagent-libs',
-    VSCODE_SETTINGS: '../.vscode/settings.json',
+    JAVAAGENT_DIR: 'javaagent-libs',
+    VSCODE_SETTINGS: '.vscode/settings.json',
   },
   MOCKITO_CORE_FILE: {
     PREFIX: 'mockito-core',
@@ -60,11 +59,9 @@ async function initJvmOptions() {
   const changes = [];
 
   try {
-    const __filename = fileURLToPath(import.meta.url);
-    const __dirname = path.dirname(__filename);
-
     // Mockito JAR 찾기
-    const javaAgentDir = path.join(__dirname, CONFIG.PATHS.JAVAAGENT_DIR);
+    const javaAgentDir = path.join(process.cwd(), CONFIG.PATHS.JAVAAGENT_DIR);
+
     const files = await readdir(javaAgentDir);
     const mockitoJar = files.find(
       (file) =>
@@ -77,7 +74,7 @@ async function initJvmOptions() {
     }
 
     // VSCode 설정 파일 읽기
-    const settingsPath = path.join(__dirname, CONFIG.PATHS.VSCODE_SETTINGS);
+    const settingsPath = path.join(process.cwd(), CONFIG.PATHS.VSCODE_SETTINGS);
     const settings = parse(await readFile(settingsPath, 'utf8'));
 
     // 기존 VM 인자 가져오기
