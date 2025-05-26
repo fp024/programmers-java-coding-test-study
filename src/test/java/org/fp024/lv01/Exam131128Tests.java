@@ -31,8 +31,7 @@ class Exam131128Tests {
         yMap.put(y.charAt(i), yMap.getOrDefault(y.charAt(i), 0) + 1);
       }
 
-      // 2. 작은 맵을 찾아도 되긴 되는데... 키가 0~9까지 밖에 없어서 아무거나 먼저 해도 될 것 같다.
-
+      // 2. 작은 맵을 기준으로 찾아도 되긴 되는데... 키가 0~9까지 밖에 없어서 아무거나 먼저 해도 될 것 같다.
       for (var xe : xMap.entrySet()) {
         Character xKey = xe.getKey();
         Integer xValue = xe.getValue();
@@ -50,6 +49,7 @@ class Exam131128Tests {
         }
       }
 
+      // 💡 StringBuilder의 isEmpty() 메서드는 Java 15부터 지원한다.
       if (result.length() > 0) {
         answer = result.toString();
         if (result.charAt(0) == '0') {
