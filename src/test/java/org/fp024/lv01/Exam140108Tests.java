@@ -14,6 +14,9 @@ import org.junit.jupiter.params.provider.MethodSource;
  */
 @Slf4j
 class Exam140108Tests {
+  /** 문제 번호 */
+  private static final String EXAM_NO = "140108";
+
   // ========== Target ==========
   static class Solution {
 
@@ -71,8 +74,8 @@ class Exam140108Tests {
   // ========== Test ==========
   @ParameterizedTest
   @MethodSource({
-    "org.fp024.lv01.Exam140108TestData#defaultDataProvider", //
-    "org.fp024.lv01.Exam140108TestData#extraDataProvider"
+    "org.fp024.lv01.Exam" + EXAM_NO + "TestData#defaultDataProvider", //
+    "org.fp024.lv01.Exam" + EXAM_NO + "TestData#extraDataProvider"
   })
   void testSolution(String s, int expect) {
     assertThat(new Solution().solution(s)).isEqualTo(expect);

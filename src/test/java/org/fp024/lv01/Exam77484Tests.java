@@ -12,6 +12,9 @@ import org.junit.jupiter.params.provider.MethodSource;
  */
 @Slf4j
 class Exam77484Tests {
+  /** 문제 번호 */
+  private static final String EXAM_NO = "77484";
+
   // ========== Target ==========
   static class Solution {
     static final int ALL_NUMBER_COUNT = 6;
@@ -50,8 +53,8 @@ class Exam77484Tests {
   // ========== Test ==========
   @ParameterizedTest
   @MethodSource({
-    "org.fp024.lv01.Exam77484TestData#defaultDataProvider", //
-    "org.fp024.lv01.Exam77484TestData#extraDataProvider"
+    "org.fp024.lv01.Exam" + EXAM_NO + "TestData#defaultDataProvider", //
+    "org.fp024.lv01.Exam" + EXAM_NO + "TestData#extraDataProvider"
   })
   void testSolution(int[] lottos, int[] win_nums, int[] expect) {
     assertThat(new Solution().solution(lottos, win_nums)).isEqualTo(expect);
