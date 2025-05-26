@@ -3,6 +3,7 @@ package org.fp024.lv01;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 import lombok.extern.slf4j.Slf4j;
@@ -21,14 +22,10 @@ class Exam131128Tests {
       String answer;
 
       List<String> descX =
-          Arrays.stream(x.split(""))
-              .sorted((a, b) -> Integer.compare(Integer.parseInt(b), Integer.parseInt((a))))
-              .collect(Collectors.toList());
+          Arrays.stream(x.split("")).sorted(Comparator.reverseOrder()).collect(Collectors.toList());
 
       List<String> descY =
-          Arrays.stream(y.split(""))
-              .sorted((a, b) -> Integer.compare(Integer.parseInt(b), Integer.parseInt((a))))
-              .collect(Collectors.toList());
+          Arrays.stream(y.split("")).sorted(Comparator.reverseOrder()).collect(Collectors.toList());
 
       final List<String> longer;
       final List<String> shorter;
@@ -46,7 +43,7 @@ class Exam131128Tests {
       for (String s : shorter) {
         int foundIndex = longer.indexOf(s);
         if (foundIndex != -1) {
-          longer.set(foundIndex, "");
+          longer.remove(foundIndex);
           result.append(s);
         }
       }
