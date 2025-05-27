@@ -15,7 +15,7 @@ const CONFIG = {
   JVM_OPTIONS: {
     MOCKITO_AGENT: {
       PREFIX: '-javaagent:${workspaceFolder}/javaagent-libs/mockito-core',
-      // VALUE는 동적으로 결정됨
+      // VALUE에 해당하는 앞부분이 PREFIX부분에 정의되어있는데, 뒷부분의 -{버전}.jar 부분은 동적으로 결정됨
     },
     XSHARE: {
       PREFIX: '-Xshare:',
