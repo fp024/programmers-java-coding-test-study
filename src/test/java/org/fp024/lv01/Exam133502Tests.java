@@ -17,6 +17,9 @@ class Exam133502Tests {
 
   // ========== Target ==========
   static class Solution {
+    private static final String HAMBURGER_RECIPE = "1231";
+    private static final int SEARCH_OFFSET = HAMBURGER_RECIPE.length() / 2;
+
     public int solution(int[] ingredient) {
       int answer = 0;
 
@@ -26,13 +29,13 @@ class Exam133502Tests {
         sb.append(j);
       }
 
-      int foundIdx = 0;
+      int fromIndex = 0;
       while (true) {
-        int hamburgerIndex = sb.indexOf("1231", foundIdx);
+        int hamburgerIndex = sb.indexOf(HAMBURGER_RECIPE, fromIndex);
 
         if (hamburgerIndex > -1) {
-          sb.delete(hamburgerIndex, hamburgerIndex + 4);
-          foundIdx = Math.max(hamburgerIndex - 2, 0);
+          sb.delete(hamburgerIndex, hamburgerIndex + HAMBURGER_RECIPE.length());
+          fromIndex = Math.max(hamburgerIndex - SEARCH_OFFSET, 0);
           answer++;
         } else {
           break;

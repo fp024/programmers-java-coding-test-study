@@ -33,6 +33,11 @@ class Exam133502TestData {
             new int[] {1}, //
             0
             //
+            ),
+        Arguments.of(
+            new int[] {1, 1, 2, 3, 1, 2, 3, 1}, //
+            2
+            //
             )
 
         //
