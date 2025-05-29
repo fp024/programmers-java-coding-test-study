@@ -42,4 +42,19 @@ class Exam150370TestData {
         //
         );
   }
+
+  static Stream<Arguments> extraDataProvider() {
+    return Stream.of(
+        Arguments.of(
+            "0000.02.01", //
+            new String[] {
+              "A 1", //
+            },
+            new String[] {
+              "0000.01.01 A", //
+            },
+            new int[] {1}
+            //
+            ));
+  }
 }

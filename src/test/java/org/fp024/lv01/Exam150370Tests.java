@@ -55,6 +55,7 @@ class Exam150370Tests {
         var termType = privacyArray[1];
 
         // 💡 개인정보 수집일 + 약관일수는 유효기간이 끝나는 다음날을 가리키므로, -1을 빼서 정확한 만료일과 비교한다.
+        //    (약관 동의 기간에 수집 일이 포함된다.)
         if (privacyStartDays + termsMap.get(termType) - 1 < todayInDays) {
           answer.add(i + 1);
         }
@@ -68,7 +69,7 @@ class Exam150370Tests {
   @ParameterizedTest
   @MethodSource({
     "org.fp024.lv01.Exam" + EXAM_NO + "TestData#defaultDataProvider", //
-    // "org.fp024.lv01.Exam" + EXAM_NO + "TestData#extraDataProvider"
+    "org.fp024.lv01.Exam" + EXAM_NO + "TestData#extraDataProvider"
   })
   void testSolution(String today, String[] terms, String[] privacies, int[] expect) {
     assertThat(new Solution().solution(today, terms, privacies)).isEqualTo(expect);
