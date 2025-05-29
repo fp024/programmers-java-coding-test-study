@@ -22,14 +22,14 @@ class Exam150370Tests {
   // ========== Target ==========
   static class Solution {
 
-    private static final int MONTH_OF_DAYS = 28;
+    private static final int DAYS_IN_MONTH = 28;
 
     /** 28일 기준으로 현재 일자의 일수를 반환하는 함수 */
-    int getDays(String yyyyMMdd) {
+    int calculateTotalDays(String yyyyMMdd) {
       var dateArray = yyyyMMdd.split("\\.");
       // 💡yyyy영역에 0000년이 들어올 것 같진 않지만.. 방어 목적으로 넣어두자!
-      var year = Math.max((Integer.parseInt(dateArray[0]) - 1) * 12 * MONTH_OF_DAYS, 0);
-      var month = (Integer.parseInt(dateArray[1]) - 1) * MONTH_OF_DAYS;
+      var year = Math.max((Integer.parseInt(dateArray[0]) - 1) * 12 * DAYS_IN_MONTH, 0);
+      var month = (Integer.parseInt(dateArray[1]) - 1) * DAYS_IN_MONTH;
       var day = Integer.parseInt(dateArray[2]);
 
       return year + month + day;
@@ -38,24 +38,24 @@ class Exam150370Tests {
     public int[] solution(String today, String[] terms, String[] privacies) {
       List<Integer> answer = new ArrayList<>();
 
-      int todayOfDays = getDays(today);
+      int todayInDays = calculateTotalDays(today);
 
-      // 약관 코드 맵: <코드, 유효일 수>
+      // 약관 코드 맵: <코드, 유효일수(일)>
       Map<String, Integer> termsMap = new HashMap<>();
       for (String term : terms) {
         var termArray = term.split(" ");
         var termCode = termArray[0];
-        var termPeriod = Integer.parseInt(termArray[1]) * MONTH_OF_DAYS;
-        termsMap.put(termCode, termPeriod);
+        var termPeriodInDays = Integer.parseInt(termArray[1]) * DAYS_IN_MONTH;
+        termsMap.put(termCode, termPeriodInDays);
       }
 
       for (int i = 0; i < privacies.length; i++) {
         var privacyArray = privacies[i].split(" ");
-        var privacyDayOfGetDays = getDays(privacyArray[0]);
-        var termCode = privacyArray[1];
+        var privacyStartDays = calculateTotalDays(privacyArray[0]);
+        var termType = privacyArray[1];
 
         // 💡 개인정보 수집일 + 약관일수는 유효기간이 끝나는 다음날을 가리키므로, -1을 빼서 정확한 만료일과 비교한다.
-        if (privacyDayOfGetDays + termsMap.get(termCode) - 1 < todayOfDays) {
+        if (privacyStartDays + termsMap.get(termType) - 1 < todayInDays) {
           answer.add(i + 1);
         }
       }
