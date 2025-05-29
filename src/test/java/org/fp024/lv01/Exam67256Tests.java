@@ -15,7 +15,7 @@ import org.junit.jupiter.params.provider.MethodSource;
 @Slf4j
 class Exam67256Tests {
   /** 문제 번호 */
-  private static final String EXAM_NO = "67256";
+  private static final int EXAM_NO = 67256;
 
   // ========== Target ==========
   static class Solution {
