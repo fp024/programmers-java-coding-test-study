@@ -54,8 +54,7 @@ class Exam150370Tests {
         var privacyStartDays = calculateTotalDays(privacyArray[0]);
         var termType = privacyArray[1];
 
-        // 💡 개인정보 수집일 + 약관일수는 유효기간이 끝나는 다음날을 가리키므로, -1을 빼서 정확한 만료일과 비교한다.
-        //    (약관 동의 기간에 수집 일이 포함된다.)
+        // 💡 약관 동의 기간에 수집 일이 포함되므로 "개인정보 수집일 + 약관일수 - 1일"로 만료일을 계산한다.
         if (privacyStartDays + termsMap.get(termType) - 1 < todayInDays) {
           answer.add(i + 1);
         }
