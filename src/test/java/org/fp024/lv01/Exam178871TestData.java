@@ -16,4 +16,16 @@ class Exam178871TestData {
         //
         );
   }
+
+  static Stream<Arguments> extraDataProvider() {
+    return Stream.of(
+        Arguments.of(
+            new String[] {"mumu", "soe", "poe"}, //
+            new String[] {"poe", "poe"},
+            new String[] {"poe", "mumu", "soe"}
+            //
+            )
+        //
+        );
+  }
 }
