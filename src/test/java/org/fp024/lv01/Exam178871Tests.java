@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
@@ -37,12 +38,11 @@ class Exam178871Tests {
       for (var name : callings) {
         var player = playerMap.get(name);
         var prevPlayer = playerRankList.get(player.rank - 2);
-        if (prevPlayer != null) {
-          player.rank--;
-          prevPlayer.rank++;
-          playerRankList.set(player.rank - 1, player);
-          playerRankList.set(prevPlayer.rank - 1, prevPlayer);
-        }
+        // 💡 1등인 선수는 부르지 않는다고 하였으므로, prevPlayer에 대한 null 검사는 하지 않아도 된다.
+        player.rank--;
+        prevPlayer.rank++;
+        playerRankList.set(player.rank - 1, player);
+        playerRankList.set(prevPlayer.rank - 1, prevPlayer);
       }
 
       return playerRankList.stream().map(p -> p.name).toArray(String[]::new);
@@ -65,6 +65,18 @@ class Exam178871Tests {
       @Override
       public int hashCode() {
         return name.hashCode();
+      }
+
+      @Override
+      public boolean equals(Object obj) {
+        if (this == obj) {
+          return true;
+        }
+        if (obj == null || getClass() != obj.getClass()) {
+          return false;
+        }
+        Player other = (Player) obj;
+        return Objects.equals(name, other.name);
       }
     }
   }
