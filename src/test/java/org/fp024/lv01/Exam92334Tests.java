@@ -30,17 +30,27 @@ class Exam92334Tests {
     public int[] solution(String[] idList, String[] report, int k) {
       int[] answer = new int[idList.length];
 
-      // 신고자, 유저가 신고한 ID
+      // 불량 유저 별 신고자 Set
+      Map<String, Set<String>> badUserAndReportersMap = new HashMap<>();
+
+      // 신고자별 불량 유저 Set
       Map<String, Set<String>> reporterAndBadUsersMap = new HashMap<>();
-      // 불량유저_신고자 Set
-      Set<String> badUserAndReporterSet = new HashSet<>();
 
       for (String reporterAndBadUser : report) {
         var reporterAndBadUserArray = reporterAndBadUser.split(" ");
         var reporter = reporterAndBadUserArray[0];
         var badUser = reporterAndBadUserArray[1];
 
-        // 유저별 신고자 ID 카운트
+        // 불량유저별 신고자들의 ID
+        if (!badUserAndReportersMap.containsKey(badUser)) {
+          Set<String> reporterSet = new HashSet<>();
+          reporterSet.add(reporter);
+          badUserAndReportersMap.put(badUser, reporterSet);
+        } else {
+          badUserAndReportersMap.get(badUser).add(reporter);
+        }
+
+        // 신고자별 불량 유저 Set
         if (!reporterAndBadUsersMap.containsKey(reporter)) {
           Set<String> badUserSet = new HashSet<>();
           badUserSet.add(badUser);
@@ -48,25 +58,15 @@ class Exam92334Tests {
         } else {
           reporterAndBadUsersMap.get(reporter).add(badUser);
         }
-
-        // 불량유저_신고자 Set 구성
-        badUserAndReporterSet.add(badUser + "_" + reporter);
       }
 
-      for (int i = 0; i < idList.length; i++) {
-        Set<String> badUsers = reporterAndBadUsersMap.getOrDefault(idList[i], Set.of());
-        for (String badUser : badUsers) {
-          for (var itr : badUserAndReporterSet) {
-            if (itr.startsWith(badUser + "_")) {
-              answer[i]++;
-            }
-          }
+      for (var i = 0; i < idList.length; i++) {
+        var reporter = idList[i];
+        for (var badUser : reporterAndBadUsersMap.getOrDefault(reporter, Set.of())) {
+          answer[i] += badUserAndReportersMap.get(badUser).size() / k;
         }
       }
 
-      for (int i = 0; i < answer.length; i++) {
-        answer[i] = answer[i] / k;
-      }
       return answer;
     }
   }
@@ -86,6 +86,10 @@ class Exam92334Tests {
   // === 문제 읽고 첫 느낌 ===
   //   쉽지가 않다. 💢
   //   코드가 꽤 드럽지만... 기본 테스트는 통과했는데...
+  //   ...
+  //   처음 한게 너무 에러가 많아서..
+  //   불량 유저 별 신고자 Set을 따로 구성했다.
+  //   어떤 유저가 몇번 신고 당했는지가 중요해서, 이렇게 하는게 맞는 것 같다.
   //
   // === 다른 사람 풀이 확인 이후 의견 ===
   // ...
