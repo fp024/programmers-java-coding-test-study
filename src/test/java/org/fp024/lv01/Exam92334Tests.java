@@ -63,7 +63,7 @@ class Exam92334Tests {
       for (var i = 0; i < idList.length; i++) {
         var reporter = idList[i];
         for (var badUser : reporterAndBadUsersMap.getOrDefault(reporter, Set.of())) {
-          answer[i] += badUserAndReportersMap.get(badUser).size() / k;
+          answer[i] += (badUserAndReportersMap.get(badUser).size() >= k) ? 1 : 0;
         }
       }
 
@@ -90,8 +90,9 @@ class Exam92334Tests {
   //   처음 한게 너무 에러가 많아서..
   //   불량 유저 별 신고자 Set을 따로 구성했다.
   //   어떤 유저가 몇번 신고 당했는지가 중요해서, 이렇게 하는게 맞는 것 같다.
+  //   +1점 통과 😅
   //
   // === 다른 사람 풀이 확인 이후 의견 ===
-  // ...
+  //   눈에 확~ 들어오는 것은 없긴한데, 나중에 한번 다시보자 😅
   //
 }
