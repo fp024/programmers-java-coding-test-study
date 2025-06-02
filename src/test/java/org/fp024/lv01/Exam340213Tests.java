@@ -27,30 +27,28 @@ class Exam340213Tests {
       var posTimestamp = new PlayTimestamp(pos);
 
       // 💡 시작부터 오프닝 영역에 있을 경우 오프닝 끝으로 이등
-      if (posTimestamp.timeAsSeconds >= opStartTimestamp.timeAsSeconds
-          && posTimestamp.timeAsSeconds <= opEndTimestamp.timeAsSeconds) {
+      if (posTimestamp.isInRange(opStartTimestamp, opEndTimestamp)) {
         posTimestamp = new PlayTimestamp(opEndTimestamp.timeAsSeconds);
       }
 
       for (String command : commands) {
         if (command.equals("next")) {
-          posTimestamp = new PlayTimestamp(posTimestamp.nextTime());
+          posTimestamp = posTimestamp.next();
 
           // 현재시간 +10초가 동영상 길이를 넘어가면 동영상 끝으로 이동
           if (posTimestamp.timeAsSeconds > videoLenTimestamp.timeAsSeconds) {
             posTimestamp = new PlayTimestamp(videoLenTimestamp.timeAsSeconds);
           }
         } else if (command.equals("prev")) {
-          posTimestamp = new PlayTimestamp(posTimestamp.prevTime());
+          posTimestamp = posTimestamp.prev();
           // 현재시간 -10초가 음수가 되면 동영상 맨앞으로 이동
-          if (posTimestamp.prevTime() < 0) {
+          if (posTimestamp.timeAsSeconds < 0) {
             posTimestamp = new PlayTimestamp(0);
           }
         }
 
         // 💡 명령이 끝난후 현재 위치가 오프닝 영역에 있을 경우 오프닝 끝으로 이등
-        if (posTimestamp.timeAsSeconds >= opStartTimestamp.timeAsSeconds
-            && posTimestamp.timeAsSeconds <= opEndTimestamp.timeAsSeconds) {
+        if (posTimestamp.isInRange(opStartTimestamp, opEndTimestamp)) {
           posTimestamp = new PlayTimestamp(opEndTimestamp.timeAsSeconds);
         }
       }
@@ -60,6 +58,7 @@ class Exam340213Tests {
 
     /** 재생 시간 타임 스템프 */
     static class PlayTimestamp {
+      private static final int MOVE_TIME_SECOND = 10;
       // 초단위 시간
       final int timeAsSeconds;
 
@@ -85,11 +84,23 @@ class Exam340213Tests {
       }
 
       int prevTime() {
-        return timeAsSeconds - 10;
+        return timeAsSeconds - MOVE_TIME_SECOND;
+      }
+
+      PlayTimestamp prev() {
+        return new PlayTimestamp(prevTime());
       }
 
       int nextTime() {
-        return timeAsSeconds + 10;
+        return timeAsSeconds + MOVE_TIME_SECOND;
+      }
+
+      PlayTimestamp next() {
+        return new PlayTimestamp(nextTime());
+      }
+
+      boolean isInRange(PlayTimestamp start, PlayTimestamp end) {
+        return this.timeAsSeconds >= start.timeAsSeconds && this.timeAsSeconds <= end.timeAsSeconds;
       }
 
       @Override
