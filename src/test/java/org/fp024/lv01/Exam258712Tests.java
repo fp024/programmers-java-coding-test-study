@@ -26,10 +26,10 @@ class Exam258712Tests {
       // <발신자ID, <수신자ID, 수신 횟수>>
       Map<String, Map<String, Integer>> senderAndReceiversHistory = new HashMap<>();
 
-      // 선물지수 카운트 맵
-      Map<String, Integer> giftScoreMap = new HashMap<>();
+      // 다음달에 받을 선물 갯수
+      Map<String, Integer> nextMonthGiftCount = new HashMap<>();
       for (var friend : friends) {
-        giftScoreMap.put(friend, 0);
+        nextMonthGiftCount.put(friend, 0);
       }
 
       for (var g : gifts) {
@@ -54,13 +54,13 @@ class Exam258712Tests {
           var friend2ToFriend1 =
               senderAndReceiversHistory.getOrDefault(friend2, Map.of()).getOrDefault(friend1, 0);
 
-          // 두 사람이 주고받은 선물 지수에 따라, 선물 지수 점수 증가
+          // 두 사람이 주고받은 선물 지수에 따라, 다음달에 받을 선물 수 증가
           if (friend1ToFriend2 > friend2ToFriend1) {
-            giftScoreMap.put(friend1, giftScoreMap.get(friend1) + 1);
+            nextMonthGiftCount.put(friend1, nextMonthGiftCount.get(friend1) + 1);
           } else if (friend1ToFriend2 < friend2ToFriend1) {
-            giftScoreMap.put(friend2, giftScoreMap.get(friend2) + 1);
+            nextMonthGiftCount.put(friend2, nextMonthGiftCount.get(friend2) + 1);
           } else {
-            // 주고받은 기록이 하나도 없거나 같을 때는, 서로 주고받은 것 관계 없이 총 보내고 받은 선물수로 선물 지수 점수 산정
+            // 주고받은 기록이 하나도 없거나 같을 때는, 서로 주고받은 것 관계 없이 총 보내고 받은 선물수로 다음달에 받을 선물 수 산정
             var friend1TotalGiftScore =
                 getTotalSendCount(friend1, senderAndReceiversHistory)
                     - getTotalReceiveCount(friend1, senderAndReceiversHistory);
@@ -70,16 +70,16 @@ class Exam258712Tests {
                     - getTotalReceiveCount(friend2, senderAndReceiversHistory);
 
             if (friend1TotalGiftScore > friend2TotalGiftScore) {
-              giftScoreMap.put(friend1, giftScoreMap.get(friend1) + 1);
+              nextMonthGiftCount.put(friend1, nextMonthGiftCount.get(friend1) + 1);
             } else if (friend1TotalGiftScore < friend2TotalGiftScore) {
-              giftScoreMap.put(friend2, giftScoreMap.get(friend2) + 1);
+              nextMonthGiftCount.put(friend2, nextMonthGiftCount.get(friend2) + 1);
             }
           }
         }
       }
 
-      for (String id : giftScoreMap.keySet()) {
-        answer = Math.max(answer, giftScoreMap.get(id));
+      for (String id : nextMonthGiftCount.keySet()) {
+        answer = Math.max(answer, nextMonthGiftCount.get(id));
       }
 
       return answer;
