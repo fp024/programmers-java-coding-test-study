@@ -4,9 +4,9 @@
 lombok-plugin = "8.13.1"
 
 ### libraries ###
-spring = "6.2.7"
-log4j = "2.24.3"
-junit = "5.13.0"
+spring = "6.2.8"
+log4j = "2.25.0"
+junit = "5.13.1"
 mockito = "5.18.0"
 assertj = "3.27.3"
 
