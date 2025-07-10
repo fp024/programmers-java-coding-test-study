@@ -12,8 +12,8 @@ importers:
         specifier: 3.6.2
         version: 3.6.2
       vscode-java-setup-scripts:
-        specifier: github:fp024/vscode-java-setup-scripts#v1.0.0
-        version: https://codeload.github.com/fp024/vscode-java-setup-scripts/tar.gz/cec2b5856ec2462b39c81c5cd38df5a930abfc8b
+        specifier: github:fp024/vscode-java-setup-scripts#v1.0.1
+        version: https://codeload.github.com/fp024/vscode-java-setup-scripts/tar.gz/75954c1aae3206301f24c27d6bc700ada26103b4
 
 packages:
 
@@ -45,8 +45,8 @@ packages:
     resolution: {integrity: sha512-PV0dzCYDNfRi1jCDbJzpW7jNNDRuCOG/jI5ctQcGKt/clZD+YcPS3yIlWuTJMmESC8aevCFmWJy5wjAFgNqN6w==}
     engines: {node: '>=0.10'}
 
-  vscode-java-setup-scripts@https://codeload.github.com/fp024/vscode-java-setup-scripts/tar.gz/cec2b5856ec2462b39c81c5cd38df5a930abfc8b:
-    resolution: {tarball: https://codeload.github.com/fp024/vscode-java-setup-scripts/tar.gz/cec2b5856ec2462b39c81c5cd38df5a930abfc8b}
+  vscode-java-setup-scripts@https://codeload.github.com/fp024/vscode-java-setup-scripts/tar.gz/75954c1aae3206301f24c27d6bc700ada26103b4:
+    resolution: {tarball: https://codeload.github.com/fp024/vscode-java-setup-scripts/tar.gz/75954c1aae3206301f24c27d6bc700ada26103b4}
     version: 1.0.0
     engines: {node: '>=16.17.0'}
     hasBin: true
@@ -73,6 +73,6 @@ snapshots:
 
   repeat-string@1.6.1: {}
 
-  vscode-java-setup-scripts@https://codeload.github.com/fp024/vscode-java-setup-scripts/tar.gz/cec2b5856ec2462b39c81c5cd38df5a930abfc8b:
+  vscode-java-setup-scripts@https://codeload.github.com/fp024/vscode-java-setup-scripts/tar.gz/75954c1aae3206301f24c27d6bc700ada26103b4:
     dependencies:
       comment-json: 4.2.5
