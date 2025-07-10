@@ -7,13 +7,13 @@
   "scripts": {
     "preinstall": "npx only-allow pnpm",
     "format": "pnpm dlx prettier --write \"./**/*.{html,css,js,json}\"",
-    "add-javac-parameters-option": "node scripts/addJavacParametersOption.js",
-    "copy-mockito-jar": "node scripts/runGradleWrapper.js copyMockitoJar",
-    "init-test-jvm-options": "node scripts/initTestJvmOptions.js",
+    "add-javac-parameters-option": "node node_modules/vscode-java-setup-scripts/src/addJavacParametersOption.js",
+    "copy-mockito-jar": "node node_modules/vscode-java-setup-scripts/src/runGradleWrapper.js copyMockitoJar",
+    "init-test-jvm-options": "node node_modules/vscode-java-setup-scripts/src/initTestJvmOptions.js",
     "init-project": "pnpm run add-javac-parameters-option && pnpm run copy-mockito-jar && pnpm run init-test-jvm-options"
   },
-  "dependencies": {
-    "comment-json": "^4.2.5",
-    "prettier": "3.5.3"
+  "devDependencies": {
+    "prettier": "3.6.2",
+    "vscode-java-setup-scripts": "github:fp024/vscode-java-setup-scripts#master"
   }
 }
