@@ -29,7 +29,7 @@ class Exam389478Tests {
         var brownWidth = dimension.width + 2; // brown의 가로 길이
         var brownHeight = dimension.height + 2; // brown의 세로 길이
 
-        // 가로 * 세로가 = brown과 yello의 합과 같은 경우가 구하려는 카펫의 크기이다.
+        // 가로 * 세로가 = brown과 yellow의 합과 같은 경우가 구하려는 카펫의 크기이다.
         if (brownWidth * brownHeight == brown + yellow) {
           answer[0] = brownWidth;
           answer[1] = brownHeight;
