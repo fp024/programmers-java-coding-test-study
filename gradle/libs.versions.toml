@@ -1,7 +1,7 @@
 [versions]
 ### plguins ###
 # https://plugins.gradle.org/plugin/io.freefair.lombok
-lombok-plugin = "8.13.1"
+lombok-plugin = "8.14"
 
 ### libraries ###
 spring = "6.2.9"

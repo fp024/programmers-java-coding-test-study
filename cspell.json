@@ -11,7 +11,8 @@
     "/gradlew.bat",
     "/src/main/resources/static/css",
     "/src/main/resources/application.yml",
-    "/.gitignore"
+    "/.gitignore",
+    "/pnpm-lock.yaml",
   ],
   "words": [
 
