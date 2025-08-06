@@ -23,6 +23,16 @@ class Exam81303Tests {
       int rowIndex;
       Row prev;
       Row next;
+
+      public void remove() {
+        prev.next = next;
+        next.prev = prev;
+      }
+
+      public void restore() {
+        prev.next = this;
+        next.prev = this;
+      }
     }
 
     public String solution(int n, int k, String[] cmd) {
@@ -80,8 +90,7 @@ class Exam81303Tests {
           Row prevRow = current.prev;
           Row nextRow = current.next;
 
-          prevRow.next = nextRow;
-          nextRow.prev = prevRow;
+          current.remove();
 
           // 새로운 커서 위치 정의
           if (n < nextRow.rowIndex) { // 마지막 더미 행이면
@@ -94,9 +103,7 @@ class Exam81303Tests {
 
         } else if ("Z".equals(command)) {
           if (stack.peek() != null) {
-            Row restoredRow = table[stack.pop()];
-            table[restoredRow.prev.rowIndex].next = restoredRow;
-            table[restoredRow.next.rowIndex].prev = restoredRow;
+            table[stack.pop()].restore();
           }
         }
       }
