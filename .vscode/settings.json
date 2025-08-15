@@ -3,6 +3,9 @@
   "[java]": {
     "editor.formatOnSave": true
   },
+  "[toml]": {
+    "editor.formatOnSave": true
+  },
   "[html]": {
     "editor.formatOnSave": true
   },
