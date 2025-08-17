@@ -7,7 +7,7 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
 
 /*
- * 택배 상자 꺼내기
+ * 이상한 문자 만들기
  *   https://school.programmers.co.kr/learn/courses/30/lessons/12930
  */
 @Slf4j
