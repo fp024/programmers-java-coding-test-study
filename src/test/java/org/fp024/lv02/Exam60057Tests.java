@@ -48,12 +48,10 @@ class Exam60057Tests {
         if (prevUnit.equals(currentUnit)) {
           count++;
         } else {
-          if (!prevUnit.isEmpty()) {
-            if (count > 1) {
-              zipBuilder.append(count);
-            }
-            zipBuilder.append(prevUnit);
+          if (count > 1) {
+            zipBuilder.append(count);
           }
+          zipBuilder.append(prevUnit);
           count = 1;
         }
 
@@ -66,8 +64,8 @@ class Exam60057Tests {
       }
 
       zipBuilder.append(prevUnit);
-      String remain = s.substring(start);
-      zipBuilder.append(remain);
+      // unit 단위에 포함되지 않은 문자열 추가
+      zipBuilder.append(s.substring(start));
 
       return zipBuilder.toString();
     }
