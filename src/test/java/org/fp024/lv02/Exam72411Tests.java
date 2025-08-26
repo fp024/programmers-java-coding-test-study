@@ -57,13 +57,13 @@ class Exam72411Tests {
       // 코스 단위별(course[]) 가장 많이 주문된 코스단위 조합, 단 2개 이상 주문이 되야함.
       List<String> answer = new ArrayList<>();
 
-      for (int courseUnit : course) {
+      for (int courseQty : course) {
         // <코스 단위, 카운트> 맵
         Map<String, Integer> countUnitCountMap = new HashMap<>();
         for (String orderSet : orders) {
           String sortedOrderSet =
               Arrays.stream(orderSet.split("")).sorted().collect(Collectors.joining(""));
-          List<String> combiList = combinations(sortedOrderSet, courseUnit);
+          List<String> combiList = combinations(sortedOrderSet, courseQty);
           // 코스 단위 카운트 맵을 생성
           for (String s : combiList) {
             countUnitCountMap.put(s, countUnitCountMap.getOrDefault(s, 0) + 1);
