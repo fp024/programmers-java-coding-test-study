@@ -1,14 +1,14 @@
 [versions]
 ### plguins ###
 # https://plugins.gradle.org/plugin/io.freefair.lombok
-lombok-plugin = "8.14"
+lombok-plugin = "9.0.0-rc2"
 
 ### libraries ###
-spring = "6.2.10"
-log4j = "2.25.1"
+spring = "6.2.11"
+log4j = "2.25.2"
 junit = "5.13.4"
-mockito = "5.19.0"
-assertj = "3.27.4"
+mockito = "5.20.0"
+assertj = "3.27.5"
 
 
 [libraries]
