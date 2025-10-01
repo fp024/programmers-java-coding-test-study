@@ -1,6 +1,5 @@
 plugins {
   id 'application'
-  alias(libs.plugins.lombok)
 }
 
 group = 'org.fp024.programmers.codingtest'
@@ -22,6 +21,12 @@ repositories {
 }
 
 dependencies {
+  compileOnly(libs.lombok)
+  annotationProcessor(libs.lombok)
+
+  testCompileOnly(libs.lombok)
+  testAnnotationProcessor(libs.lombok)
+
   implementation (libs.log4j.core)
   implementation (libs.log4j.slf4j2.impl)
 

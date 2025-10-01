@@ -1,17 +1,19 @@
 [versions]
 ### plguins ###
-# https://plugins.gradle.org/plugin/io.freefair.lombok
-lombok-plugin = "9.0.0-rc2"
+# ...
+
 
 ### libraries ###
 spring = "6.2.11"
 log4j = "2.25.2"
-junit = "5.13.4"
+junit = "6.0.0"
 mockito = "5.20.0"
-assertj = "3.27.5"
+assertj = "3.27.6"
+lombok = "1.18.42"
 
 
 [libraries]
+lombok = { module = "org.projectlombok:lombok", version.ref = "lombok" }
 spring-test = { module = "org.springframework:spring-test", version.ref = "spring" }
 log4j-core = { module = "org.apache.logging.log4j:log4j-core", version.ref = "log4j" }
 log4j-slf4j2-impl = { module = "org.apache.logging.log4j:log4j-slf4j2-impl", version.ref = "log4j" }
@@ -21,4 +23,4 @@ assertj-core = { module = "org.assertj:assertj-core", version.ref = "assertj" }
 
 
 [plugins]
-lombok = { id = "io.freefair.lombok", version.ref = "lombok-plugin" }
+# ...
