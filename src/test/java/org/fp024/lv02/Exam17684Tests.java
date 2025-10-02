@@ -53,7 +53,7 @@ class Exam17684Tests {
           final var nextChar = Character.toString(msg.charAt(j));
 
           if (dict.containsKey(foundLongWord + nextChar)) {
-            foundLongWord.append(msg.charAt(j));
+            foundLongWord.append(nextChar);
           } else {
             dict.put(foundLongWord + nextChar, dict.size() + 1);
             break;
