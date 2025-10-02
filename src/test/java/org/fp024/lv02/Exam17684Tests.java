@@ -51,11 +51,12 @@ class Exam17684Tests {
 
         for (int j = i; j < msg.length(); j++) {
           final var nextChar = Character.toString(msg.charAt(j));
+          final var nextWord = foundLongWord + nextChar;
 
-          if (dict.containsKey(foundLongWord + nextChar)) {
+          if (dict.containsKey(nextWord)) {
             foundLongWord.append(nextChar);
           } else {
-            dict.put(foundLongWord + nextChar, dict.size() + 1);
+            dict.put(nextWord, dict.size() + 1);
             break;
           }
         }
