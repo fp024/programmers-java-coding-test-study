@@ -23,13 +23,14 @@ class Exam17684Tests {
 
   /*
      🤔 ===== 문제 풀이 전략 ===== 🧠
-        ...
+        알고리즘의 구현 방법이 문제에 그대로 나와서,
+        그거 그대로 따라 했다.
   */
 
   // ✨ ========== Target ========== ✨
   static class Solution {
 
-    static final Map<String, Integer> dict = initDict();
+    final Map<String, Integer> dict = initDict();
 
     // (1) 길이가 1인 모든 단어를 포함하도록 사전을 초기화
     static Map<String, Integer> initDict() {
@@ -43,7 +44,7 @@ class Exam17684Tests {
     public int[] solution(String msg) {
       List<Integer> answer = new ArrayList<>();
 
-      for (int i = 0; i < msg.length(); i++) {
+      for (int i = 0; i < msg.length(); ) {
 
         // 사전에서 찾은 가장 긴 단어
         StringBuilder foundLongWord = new StringBuilder();
@@ -53,14 +54,14 @@ class Exam17684Tests {
 
           if (dict.containsKey(foundLongWord + nextChar)) {
             foundLongWord.append(msg.charAt(j));
-            // 💡 처리길이가 1을 넘을 때의 보정을 해줘야함.
-            i += foundLongWord.length() - 1;
           } else {
             dict.put(foundLongWord + nextChar, dict.size() + 1);
             break;
           }
         }
 
+        // 💡 처리길이가 1을 넘을 때의 보정을 해줘야함.
+        i += foundLongWord.length();
         answer.add(dict.get(foundLongWord.toString()));
       }
 
