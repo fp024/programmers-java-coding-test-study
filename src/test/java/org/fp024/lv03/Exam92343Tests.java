@@ -103,26 +103,23 @@ class Exam92343Tests {
         }
 
         for (int nextNodeId : currentStatus.nextNodeIds) {
+          var newNextNodeIds = new HashSet<>(currentStatus.nextNodeIds);
+          newNextNodeIds.remove(nextNodeId); // 이 노드로 이동하는 새 상태 생성 시, 해당 노드를 다음 후보에서 제외
+
           // 다음 탐색 노드가 늑대(🐺)인 경우
           if (info[nextNodeId] == 1) {
-
             int nextWolfCount = currentStatus.cumulativeWolfCount + 1;
-
             // 양(🐑)이 늑대(🐺)보다 많을 때만 계속 탐색 가능
             if (currentStatus.cumulativeSheepCount > nextWolfCount) {
-              var newNextNodeIds = new HashSet<>(currentStatus.nextNodeIds);
-              newNextNodeIds.remove(nextNodeId); // 방문한 노드는 제거
               queue.add(
                   new NodeState(
                       nextNodeId, //
                       currentStatus.cumulativeSheepCount,
-                      nextWolfCount, // 늑대(🐺)도 항상 누적됨 (단, 늑대(🐺)가 양(🐑) 이상이 되면 게임오버)
+                      nextWolfCount, // 늑대(🐺) < 양(🐑) 조건 유지 시 계속 누적 가능
                       newNextNodeIds));
             }
           } // 다음 탐색 노드가 양(🐑)인 경우
           else {
-            var newNextNodeIds = new HashSet<>(currentStatus.nextNodeIds);
-            newNextNodeIds.remove(nextNodeId); // 방문한 노드는 제거
             queue.add(
                 new NodeState(
                     nextNodeId, //
