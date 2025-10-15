@@ -35,6 +35,7 @@ class Exam92343Tests {
       /** 현재까지 누적된 늑대(🐺) 수 */
       final int cumulativeWolfCount;
 
+      /** 다음에 이동 가능한 노드 ID 집합 */
       final Set<Integer> nextNodeIds;
 
       public NodeState(
