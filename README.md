@@ -22,52 +22,59 @@
 
 * **VSCode 환경을 위한 프로젝트 설정**
 
-  * pnpm을 사용하므로 node를 다시 설치했을 경우 다음 명령을 실행해주자!
-
-    ```
+  
+  > 💡Node 25 부터는 Corepack이 기본 포함되어있지 않아서 먼저 corepack을 전역 설치를 해줘야한다.
+  >
+  > ```sh
+  > npm install -g corepack
+  > ```
+  
+  * corepack 활성화
+  
+    ```sh
     corepack enable
     ```
-
+  
   * 프로젝트 디펜던시 설치
-
+  
     ```
     pnpm install
     ```
-
+  
   * 프로젝트 초기화
-
+  
     ```
     pnpm init-project
     ```
-
+  
     * 다음 3가지 테스크를 모두 실행시킨다.
-
+  
       * **add-javac-parameters-option**
-
+  
         * `.settings/org.eclipse.jdt.core.prefs` 파일에  다음내용 추가하여 `-parameters` 옵션추가가 기본 값이 되도록한다.
-
+  
           ```properties
           org.eclipse.jdt.core.compiler.codegen.methodParameters=generate
           ```
-
+  
       * **copy-mockito-jar**
-
+  
         * `build.gradle`에 정의해둔 `copyMockitoJar` 테스크를 실행
-
+  
           `${projectRoot}/javaagent-libs` 경로에 현재 프로젝트에 디펜던시된 `mockito-core.jar`를 복사한다.
-
+  
       * **init-test-jvm-options**
-
+  
         * VSCode에서 테스트를 실행시킬 때, Gradle이나 Maven+Surefire에다 정의한 jvm 옵션을 로드할 수 없어서 `.vscode/settings.json`에 직접 jvm 옵션을 추가
-
+  
           ```
           -javaagent:\${workspaceFolder}/javaagent-libs/${mockitoJar}
           ```
-
+  
         * Java 21부터는 보안상의 이유로 라이브러리가 자체 JVM에 Java agent를 동적으로 attach 하는 행위를 제한하여 경고가 나오므로 위처럼 직접 -javaagent 옵션에 명시하는 것을 추천함
-
+  
         
-
+  
     > 💡 위와 같은 동작 코드들이... IntelliJ라면 Gradle의 build.gradle이나 Maven의 pom.xml에 정의된 내용을 잘 인식해서 처리하는 부분인데, VSCode는 아직 그러지 못해서 위와 같은 헬퍼 JS 스크립트들을 만들게 되었다. 😂
 
 
