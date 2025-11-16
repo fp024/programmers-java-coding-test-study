@@ -13,6 +13,7 @@
     "/src/main/resources/application.yml",
     "/.gitignore",
     "/pnpm-lock.yaml",
+    "gradle-wrapper.properties"
   ],
   "words": [
 
@@ -67,7 +68,9 @@
     "veoyou",
     "yyoom",
     "PCCE",
-    "nums"
+    "nums",
+    "Xshare",
+    "projectlombok"
   ],
   "import": []
 }

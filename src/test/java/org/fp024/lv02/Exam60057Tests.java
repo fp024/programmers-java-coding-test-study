@@ -94,6 +94,7 @@ class Exam60057Tests {
     assertThat(new Solution().solution(s)).isEqualTo(expect);
   }
 
+  // cspell:disable
   @Test
   void testZip01() {
     var zipped = zip("aaabbbccc", 1);
