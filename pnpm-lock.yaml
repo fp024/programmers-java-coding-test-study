@@ -9,19 +9,19 @@ importers:
   .:
     devDependencies:
       prettier:
-        specifier: ^3.6.2
-        version: 3.6.2
+        specifier: ^3.7.4
+        version: 3.7.4
       vscode-java-setup-scripts:
         specifier: github:fp024/vscode-java-setup-scripts#v0.1.0
-        version: https://codeload.github.com/fp024/vscode-java-setup-scripts/tar.gz/6da0c238381f49cd2cf0ad8d56fba18fd199c53a
+        version: https://codeload.github.com/fp024/vscode-java-setup-scripts/tar.gz/cb03f6e5bfd678af3c20a64ba35352f8d3dbd581
 
 packages:
 
   array-timsort@1.0.3:
     resolution: {integrity: sha512-/+3GRL7dDAGEfM6TseQk/U+mi18TU2Ms9I3UlLdUMhz2hbvGNTKdj9xniwXfUqgYhHxRx0+8UnKkvlNwVU+cWQ==}
 
-  comment-json@4.4.1:
-    resolution: {integrity: sha512-r1To31BQD5060QdkC+Iheai7gHwoSZobzunqkf2/kQ6xIAfJyrKNAFUwdKvkK7Qgu7pVTKQEa7ok7Ed3ycAJgg==}
+  comment-json@4.5.0:
+    resolution: {integrity: sha512-aKl8CwoMKxVTfAK4dFN4v54AEvuUh9pzmgVIBeK6gBomLwMgceQUKKWHzJdW1u1VQXQuwnJ7nJGWYYMTl5U4yg==}
     engines: {node: '>= 6'}
 
   core-util-is@1.0.3:
@@ -32,13 +32,13 @@ packages:
     engines: {node: '>=4'}
     hasBin: true
 
-  prettier@3.6.2:
-    resolution: {integrity: sha512-I7AIg5boAr5R0FFtJ6rCfD+LFsWHp81dolrFD8S79U9tb8Az2nGrJncnMSnys+bpQJfRUzqs9hnA81OAA3hCuQ==}
+  prettier@3.7.4:
+    resolution: {integrity: sha512-v6UNi1+3hSlVvv8fSaoUbggEM5VErKmmpGA7Pl3HF8V6uKY7rvClBOJlH6yNwQtfTueNkGVpOv/mtWL9L4bgRA==}
     engines: {node: '>=14'}
     hasBin: true
 
-  vscode-java-setup-scripts@https://codeload.github.com/fp024/vscode-java-setup-scripts/tar.gz/6da0c238381f49cd2cf0ad8d56fba18fd199c53a:
-    resolution: {tarball: https://codeload.github.com/fp024/vscode-java-setup-scripts/tar.gz/6da0c238381f49cd2cf0ad8d56fba18fd199c53a}
+  vscode-java-setup-scripts@https://codeload.github.com/fp024/vscode-java-setup-scripts/tar.gz/cb03f6e5bfd678af3c20a64ba35352f8d3dbd581:
+    resolution: {tarball: https://codeload.github.com/fp024/vscode-java-setup-scripts/tar.gz/cb03f6e5bfd678af3c20a64ba35352f8d3dbd581}
     version: 0.1.0
     engines: {node: '>=22.17.0'}
     hasBin: true
@@ -47,7 +47,7 @@ snapshots:
 
   array-timsort@1.0.3: {}
 
-  comment-json@4.4.1:
+  comment-json@4.5.0:
     dependencies:
       array-timsort: 1.0.3
       core-util-is: 1.0.3
@@ -57,8 +57,8 @@ snapshots:
 
   esprima@4.0.1: {}
 
-  prettier@3.6.2: {}
+  prettier@3.7.4: {}
 
-  vscode-java-setup-scripts@https://codeload.github.com/fp024/vscode-java-setup-scripts/tar.gz/6da0c238381f49cd2cf0ad8d56fba18fd199c53a:
+  vscode-java-setup-scripts@https://codeload.github.com/fp024/vscode-java-setup-scripts/tar.gz/cb03f6e5bfd678af3c20a64ba35352f8d3dbd581:
     dependencies:
-      comment-json: 4.4.1
+      comment-json: 4.5.0
