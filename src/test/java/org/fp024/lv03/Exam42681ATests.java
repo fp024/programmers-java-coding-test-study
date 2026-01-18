@@ -9,11 +9,11 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
 
 /*
- * 섬 연결하기
+ * 섬 연결하기 - ✨ 랭크 적용
  *   https://school.programmers.co.kr/learn/courses/30/lessons/42681
  */
 @Slf4j
-class Exam42681Tests {
+class Exam42681ATests {
   /** 문제 번호 */
   private static final int EXAM_NO = 42681;
 
@@ -39,17 +39,29 @@ class Exam42681Tests {
     /**
      * 유니온 - 집합 합치기
      *
-     * <p>일단은... 랭크를 고려하지 않음 😅.
+     * <p>랭크(Rank) 기반의 최적화 적용
      *
      * @param parents 부모 노드를 나타내는 배열
+     * @param ranks 랭크 정보 배열
      * @param a a노드
      * @param b b노드
      */
-    private void union(int[] parents, int a, int b) {
+    private void union(int[] parents, int[] ranks, int a, int b) {
       int aRoot = find(parents, a);
       int bRoot = find(parents, b);
-      if (aRoot != bRoot) {
+
+      if (aRoot == bRoot) {
+        return;
+      }
+
+      // b의 랭크가 높으면 a의 루트를 b로 한다.
+      if (ranks[aRoot] < ranks[bRoot]) {
         parents[aRoot] = bRoot;
+      } else if (ranks[aRoot] > ranks[bRoot]) {
+        parents[bRoot] = aRoot;
+      } else { // a, b의 랭크가 같으면 한쪽을 다른 쪽에 붙이고, 루트가 된 쪽의 랭크를 1 증가시킨다.
+        parents[aRoot] = bRoot;
+        ranks[bRoot]++;
       }
     }
 
@@ -60,6 +72,9 @@ class Exam42681Tests {
       for (int i = 0; i < n; i++) {
         parents[i] = i;
       }
+
+      // 랭크 초기화
+      int[] ranks = new int[n];
 
       // 건설 비용 기준으로 오름차순
       Arrays.sort(costs, Comparator.comparingInt(a -> a[2]));
@@ -81,7 +96,7 @@ class Exam42681Tests {
           continue;
         }
 
-        union(parents, aRoot, bRoot);
+        union(parents, ranks, aRoot, bRoot);
         minCost += abCost;
         edgeCount++;
       }
@@ -103,7 +118,7 @@ class Exam42681Tests {
   // cspell:enable
   //
   // === 문제 읽고 첫 느낌 ===
-  //   랭크에 대한 이해는 아직 부족해서, 해당 개념은 적용하지 않고 풀었다. 😂
+  //   랭크 적용, 좀 이해가 되는 느낌..😊
   //
   // === 다른 사람 풀이 확인 이후 의견 ===
   // ...
