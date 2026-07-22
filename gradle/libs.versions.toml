@@ -5,8 +5,8 @@
 
 ### libraries ###
 spring = "7.0.8"
-log4j = "2.26.0"
-junit = "6.1.0"
+log4j = "2.26.1"
+junit = "6.1.1"
 mockito = "5.23.0"
 assertj = "3.27.7"
 lombok = "1.18.46"
