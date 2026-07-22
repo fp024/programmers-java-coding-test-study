@@ -9,6 +9,8 @@
   "[javascript]": {
     "editor.formatOnSave": true
   },
+  // 코딩 테스트 프로젝트에서 SonarQube 분석 제외
+  "sonarlint.analysisExcludesStandalone": "**/*",
   "java.debug.settings.onBuildFailureProceed": true,
   "spring-boot.ls.problem.version-validation.UPDATE_LATEST_MINOR_VERSION": "IGNORE",
   // 💡vscode-java-test가 build.gradle의 test 테스크에 설정한 javaagent 설정을 인식하지 못해서 수동설정해야한다.
